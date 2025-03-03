@@ -12,7 +12,7 @@ typedef uint16_t LargeRegister;
 typedef Byte Opcode;
 
 namespace StatusRegisterFlags {
-    enum {
+    enum Flags{
         C = (1 << 0), // Carry Bit
         Z = (1 << 1), // Zero
         I = (1 << 2), // Interrupt Disable

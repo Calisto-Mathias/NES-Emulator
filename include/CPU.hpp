@@ -16,8 +16,10 @@ class CPU
         void NonMaskableInterrupt();
 
     private:
+
         Byte FetchByteFromMemory(const Address);
-        Byte FetchDataForOperation(const Address);
+        Byte FetchDataForOperation();
+        void WriteByteToMemory(const Address, const Byte);
 
         // TODO: Change the return types to use std::optional<Byte> rather than Byte!
         // Addressing Modes
@@ -96,6 +98,8 @@ class CPU
 
         // Utility Functions
         inline uint8_t GetNumberOfBaseClockCyclesForOperation(const Opcode);
+        inline bool GetFlagFromStatusRegister(const StatusRegisterFlags::Flags);
+        inline void SetFlagInStatusRegister(const StatusRegisterFlags::Flags, const bool);
 
     private:
         Register Accumulator;
@@ -110,6 +114,8 @@ class CPU
         Address RelativeAddress;
         Opcode CurrentOpcode;
         uint8_t CyclesLeft;
+
+        uint16_t TemporaryStorage;
 
         std::array<Instruction, NUMBER_OF_LEGAL_INSTRUCTIONS> OpcodeTable;
 };
