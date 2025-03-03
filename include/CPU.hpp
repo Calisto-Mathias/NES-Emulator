@@ -16,7 +16,8 @@ class CPU
         void NonMaskableInterrupt();
 
     private:
-        const Byte FetchByteFromMemory(const Address);
+        Byte FetchByteFromMemory(const Address);
+        Byte FetchDataForOperation(const Address);
 
         // TODO: Change the return types to use std::optional<Byte> rather than Byte!
         // Addressing Modes
@@ -107,6 +108,7 @@ class CPU
         Byte FetchedData;
         Address AbsoluteAddress;
         Address RelativeAddress;
+        Opcode CurrentOpcode;
         uint8_t CyclesLeft;
 
         std::array<Instruction, NUMBER_OF_LEGAL_INSTRUCTIONS> OpcodeTable;

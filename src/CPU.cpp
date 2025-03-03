@@ -174,3 +174,12 @@ CPU::RelativeMode()
 
     return false;
 }
+
+Byte
+CPU::FetchDataForOperation(const Address)
+{
+    if (OpcodeTable.at(CurrentOpcode).addressingMode != &CPU::ImplicitMode) {
+        FetchedData = FetchDataForOperation(ProgramCounter);
+    }
+    return FetchedData
+}
