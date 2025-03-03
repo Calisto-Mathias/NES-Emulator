@@ -34,7 +34,7 @@ CPU::Clock()
 bool
 CPU::ImplicitMode()
 {
-    FetchedData = Accumulator;
+    FetchedData = 0x00; // Reset the Byte;
     return false;
 }
 
@@ -42,6 +42,13 @@ bool
 CPU::ImmediateMode()
 {
     AbsoluteAddress = ProgramCounter++;
+    return false;
+}
+
+bool
+CPU::AccumulatorMode()
+{
+    FetchedData = Accumulator;
     return false;
 }
 
@@ -178,8 +185,8 @@ CPU::RelativeMode()
 Byte
 CPU::FetchDataForOperation(const Address)
 {
-    if (OpcodeTable.at(CurrentOpcode).addressingMode != &CPU::ImplicitMode) {
+    if (OpcodeTable.at(CurrentOpcode).addressingMode != &CPU::ImplicitMode && OpcodeTable.at(CurrentOpcode).addressingMode != &CPU::AccumulatorMode) {
         FetchedData = FetchDataForOperation(ProgramCounter);
     }
-    return FetchedData
+    return FetchedData;
 }
