@@ -1,9 +1,15 @@
 #ifndef TYPEDEFS_HPP
 #define TYPEDEFS_HPP
 
+class CPU;
+
 typedef uint8_t Byte;
+typedef uint16_t Address;
+
 typedef uint8_t Register;
 typedef uint16_t LargeRegister;
+
+typedef Byte Opcode;
 
 namespace StatusRegisterFlags {
     enum {
@@ -16,6 +22,15 @@ namespace StatusRegisterFlags {
         V = (1 << 6), // Overflow
         N = (1 << 7) // Negative
     }
+}
+
+typedef (bool)(CPU::*AddressingMode)();
+typedef (bool)(CPU::*OperationFunction)();
+
+struct Instruction {
+    const AddressingMode addressingMode;
+    const OperationFunction operation;
+    const uint8_t cyclesCount;
 }
 
 #endif
