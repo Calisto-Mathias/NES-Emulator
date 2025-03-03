@@ -108,6 +108,8 @@ class CPU
         Address AbsoluteAddress;
         Address RelativeAddress;
         uint8_t CyclesLeft;
+
+        std::array<Instruction, NUMBER_OF_LEGAL_INSTRUCTIONS> OpcodeTable;
 };
 
 #endif
