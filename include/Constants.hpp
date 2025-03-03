@@ -25,4 +25,6 @@ constexpr uint8_t PPU_VRAM_SIZE = PPU_VRAM_UNIT.second - PPU_VRAM_UNIT.first + 1
 constexpr std::pair<uint8_t, uint8_t> PPU_PALLETES_UNIT = { 0x3F00, 0x3FFF };
 constexpr uint8_t PPU_PALLETES_SIZE = PPU_PALLETES_UNIT.second - PPU_PALLETES_UNIT.first + 1;
 
+constexpr uint8_t NUMBER_OF_LEGAL_INSTRUCTIONS = 56;
+
 #endif
